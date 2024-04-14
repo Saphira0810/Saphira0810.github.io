@@ -1,5 +1,6 @@
 {
 "lang": "en",
 "name": "PWA alkalmazás",
-"description": "A PWA to assist searching for books based on title or author."
+"description": "A PWA to assist searching for books based on title or author.",
+"background_color": "#dad5d5"
 }
