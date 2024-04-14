@@ -26,7 +26,15 @@
               const title = book.title;
               const author = book.author_name ? book.author_name.join(', ') : "Unknown";
               const year = book.publish_year ? book.publish_year[0] : "Unknown";
-              const result = `<div><strong>Title:</strong> ${title}<br><strong>Author(s):</strong> ${author}<br><strong>Year:</strong> ${year}</div><br>`;
+              const coverId = book.cover_i ? book.cover_i:null
+              const coverUrl = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : "No cover available";
+              const result = `
+                <div>
+                  <strong>Title:</strong> ${title}<br>
+                  <strong>Author(s):</strong> ${author}<br>
+                  <strong>Year:</strong> ${year}<br>
+                  <img src="${coverUrl}" alt="No cover" style = "max-width: 50 px;">
+                </div><br>`;
               document.getElementById("searchResults").innerHTML += result;
             });
           })
