@@ -1,6 +1,20 @@
 {
-"lang": "en",
-"name": "PWA alkalmazás",
-"description": "A PWA to assist searching for books based on title or author.",
-"background_color": "#dad5d5"
+  "name": "Book Database",
+  "short_name": "BookDB",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2196F3",
+  "icons": [
+    {
+      "src": "img/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }

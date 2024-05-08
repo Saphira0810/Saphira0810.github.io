@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <title>Book Details</title>
+    <style>
+      .container{
+        display: flex;
+        align-items: flex-start;
+      }
+      .cover{
+        flex: 0 0 auto;
+        margin-right: 20px;
+      }
+      .details{
+        flex: 1 1 auto;
+      }
+      .details > div{
+        margin-bottom: 10px;
+      }
+      .details img{
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+</head>
+<body style="background-color: bisque;">
+  <div class="container" id="bookDetails">
+    <div class="cover">
+        <img id="coverImage" src="" alt="Book cover">
+    </div>
+    <div class="details">
+        <div id="title"></div>
+        <div id="author"></div>
+        <div id="year"></div>
+        <div id="bookUrl"></div>
+    </div>
+</div>
+  <script>
+    function fetchBookDetails() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const key = urlParams.get('key');
+      if (key) {
+        const apiUrl = `https://openlibrary.org${key}.json`;
+        fetch(apiUrl)
+          .then(response => response.json())
+          .then(data => {
+            const { title, author_name, publish_year, cover_i } = data;
+            const author = author_name ? author_name.join(', ') : "Unknown";
+            const year = publish_year ? publish_year[0] : "Unknown";
+            const coverUrl = cover_i ? `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg` : "No cover available";
+            const bookUrl = key ? `https://openlibrary.org${key}` : "#";
+
+            // Update DOM with fetched book details
+            document.getElementById('coverImage').src = coverUrl;
+            document.getElementById('title').innerHTML = `<strong>Title:</strong> ${title}`;
+            document.getElementById('author').innerHTML = `<strong>Author(s):</strong> ${author}`;
+            document.getElementById('year').innerHTML = `<strong>Year:</strong> ${year}`;
+            document.getElementById('bookUrl').innerHTML =`<a href = "${bookUrl}" target = "_blank"> View Details in Open Library</a>`
+          })
+          .catch(error => {
+            console.error(error);
+            document.getElementById('bookDetails').innerHTML = "Failed to fetch book details.";
+          });
+      } else {
+        document.getElementById('bookDetails').innerHTML = "No book details found.";
+      }
+    }
+
+    fetchBookDetails();
+    </script>
+</body>
+</html>
