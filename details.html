@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <link rel="icon" type="image/png" href="img/opened-book-icon.png" purpose="any" >
     <title>Book Details</title>
     <style>
       .container{
@@ -47,16 +48,18 @@
           .then(response => response.json())
           .then(data => {
             const { title, author_name, publish_year, cover_i } = data;
-            const author = author_name ? author_name.join(', ') : "Unknown";
-            const year = publish_year ? publish_year[0] : "Unknown";
-            const coverUrl = cover_i ? `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg` : "No cover available";
+            const authorId = data.authors ? data.authors[0].author.key : "Unkonwn"; //getting the author's Id : works
+            const authorData = authorId !== "Unknown" ? `https://openlibrary.org${authorId}.json` : null; //getting the author's json : works
+            const author = authorData.name ? authorData.name : "Unknown";
+            console.log(authorData);
+            const coverId = data.covers ? data.covers[0] : "Unknown";
+            const coverUrl = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : "No cover available";
             const bookUrl = key ? `https://openlibrary.org${key}` : "#";
 
             // Update DOM with fetched book details
             document.getElementById('coverImage').src = coverUrl;
             document.getElementById('title').innerHTML = `<strong>Title:</strong> ${title}`;
             document.getElementById('author').innerHTML = `<strong>Author(s):</strong> ${author}`;
-            document.getElementById('year').innerHTML = `<strong>Year:</strong> ${year}`;
             document.getElementById('bookUrl').innerHTML =`<a href = "${bookUrl}" target = "_blank"> View Details in Open Library</a>`
           })
           .catch(error => {
@@ -70,5 +73,6 @@
 
     fetchBookDetails();
     </script>
+    
 </body>
 </html>
