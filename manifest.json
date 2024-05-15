@@ -1,42 +1,49 @@
 {
-"display_override": ["window-controls-overlay"], 
-"protocol_handlers": [{"protocol":"mailto","url":"/newEmail?to=%s"}], 
-"description": "", 
-"shortcuts": [
-  {
-    "name": "Start Live Session",
-    "short_name": "Start Live",
-    "description": "Jump direction into starting or joining a live session",
-    "url": "/?startLive",
-    "icons": [
-      {
-        "src": "https://pwabuilder.com/assets/icons/icon_192.png",
-        "sizes": "192x192"
-      }
-    ]
-  }
-], 
-"screenshots": [
-  {
-    "src": "https://www.pwabuilder.com/assets/screenshots/screen1.png",
-    "sizes": "2880x1800",
-    "type": "image/png",
-    "description": "PWABuilder Home Screen"
-  },
-  {
-    "src": "https://www.pwabuilder.com/assets/screenshots/screen2.png",
-    "sizes": "2880/1800",
-    "type": "image/png",
-    "description": "PWABuilder Report Card"
-  },
-  {
-    "src": "https://www.pwabuilder.com/assets/screenshots/screen3.png",
-    "sizes": "2880x1800",
-    "type": "image/png",
-    "description": "Manifest information on the Report Card"
-  }
-], 
-    "orientation": "any", 
+  "display_override": [
+    "window-controls-overlay"
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "mailto",
+      "url": "/newEmail?to=%s"
+    }
+  ],
+  "description": "",
+  "shortcuts": [
+    {
+      "name": "Start Live Session",
+      "short_name": "Start Live",
+      "description": "Jump direction into starting or joining a live session",
+      "url": "/?startLive",
+      "icons": [
+        {
+          "src": "https://pwabuilder.com/assets/icons/icon_192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://www.pwabuilder.com/assets/screenshots/screen1.png",
+      "sizes": "2880x1800",
+      "type": "image/png",
+      "description": "PWABuilder Home Screen"
+    },
+    {
+      "src": "https://www.pwabuilder.com/assets/screenshots/screen2.png",
+      "sizes": "2880/1800",
+      "type": "image/png",
+      "description": "PWABuilder Report Card"
+    },
+    {
+      "src": "https://www.pwabuilder.com/assets/screenshots/screen3.png",
+      "sizes": "2880x1800",
+      "type": "image/png",
+      "description": "Manifest information on the Report Card"
+    }
+  ],
+  "orientation": "any",
   "name": "Book Database",
   "short_name": "BookDB",
   "start_url": "/index.html",
@@ -45,15 +52,28 @@
   "theme_color": "#2196F3",
   "icons": [
     {
-      "src": "img/icon-192x192.png",
+      "src": "img/manifest-icon-192.maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/manifest-icon-192.maskable.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "img/icon-512x512.png",
+      "src": "img/manifest-icon-512.maskable.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/manifest-icon-512.maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
