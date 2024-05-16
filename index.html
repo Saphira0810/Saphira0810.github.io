@@ -47,7 +47,6 @@
               const results = data.docs;
               results.forEach((book, index) => {
                 const {title, author_name, publish_year, cover_i, key} = book;
-                const author = book.author_name ? book.author_name.join(', ') : "Unknown";
                 const year = book.publish_year ? book.publish_year[0] : "Unknown";
                 const coverId = book.cover_i ? book.cover_i:null;
                 const coverUrl = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : "No cover available";
@@ -56,7 +55,6 @@
                 resultHTML += `
                   <div class="search-result">
                     <strong><b>Title:</b></strong> ${title}<br>
-                    <strong><b>Author(s):</b></strong> ${author}<br>
                     <strong><b>Year:</b></strong> ${year}<br>
                     <a href = "${bookUrl}" target = "_blank"> View Details</a>
                     <img src="${coverUrl}" alt="No cover">

@@ -47,11 +47,9 @@
         fetch(apiUrl)
           .then(response => response.json())
           .then(data => {
-            const { title, author_name, publish_year, cover_i } = data;
+            const { title, author_name,cover_i } = data;
             const authorId = data.authors ? data.authors[0].author.key : "Unkonwn"; //getting the author's Id : works
-            const authorData = authorId !== "Unknown" ? `https://openlibrary.org${authorId}.json` : null; //getting the author's json : works
-            const author = authorData.name ? authorData.name : "Unknown";
-            console.log(authorData);
+            const author= authorId ? `https://openlibrary.org${authorId}` : "Unknown"; //getting the author's json : works
             const coverId = data.covers ? data.covers[0] : "Unknown";
             const coverUrl = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : "No cover available";
             const bookUrl = key ? `https://openlibrary.org${key}` : "#";
@@ -59,7 +57,7 @@
             // Update DOM with fetched book details
             document.getElementById('coverImage').src = coverUrl;
             document.getElementById('title').innerHTML = `<strong>Title:</strong> ${title}`;
-            document.getElementById('author').innerHTML = `<strong>Author(s):</strong> ${author}`;
+            document.getElementById('author').innerHTML = `<a href = "${author}" target = "_blank" > Author</a> `;
             document.getElementById('bookUrl').innerHTML =`<a href = "${bookUrl}" target = "_blank"> View Details in Open Library</a>`
           })
           .catch(error => {
