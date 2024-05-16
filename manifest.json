@@ -8,7 +8,11 @@
       "url": "/newEmail?to=%s"
     }
   ],
-  "description": "",
+  "description": "The application allows you to search for books by name or title.",
+  "id": "/?start_url",
+  "launch_handler": {
+    "client_mode": "auto"
+  },
   "shortcuts": [
     {
       "name": "Start Live Session",

@@ -46,6 +46,28 @@
         return url.href
     }
 
+    // Check to make sure Sync is supported.
+    if ('serviceWorker' in navigator && 'SyncManager' in window) {
+        // Get our service worker registration.
+        const registration = await navigator.serviceWorker.registration;
+  
+        try {
+            // This is where we request our sync. 
+            // We give it a "tag" to allow for differing sync behavior.
+        await registration.sync.register('database-sync');
+  
+        } catch {
+            console.log("Background Sync failed.")
+        }
+    }
+
+    self.addEventListener('sync', event => {
+        if (event.tag === 'database-sync'){
+            event.waitUntil(self.clients.claim())
+        }
+    })
+  
+
     /**
      *  @Lifecycle Activate
      *  New one activated when old isnt being used.
