@@ -9,29 +9,93 @@
     <link rel="icon" type="image/png" href="img/opened-book-icon.png" purpose="any" >
     <title> Book database</title>
     <style>
+      body {
+        background-color: bisque;
+        font-family: Arial, sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      .container{
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .h1{
+        text-align: center;
+        color: white;
+      }
+      .search-box{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+      }
+      .search-box input{
+        width: 70%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px 0 0 4px;
+      }
+      .search-box button{
+        padding: 10px 20px;
+        font-size: 16px;
+        border: 1px solid white;
+        border-left: 0;
+        background-color: white;
+        color: black;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+      }
+      .search-box button:hover{
+        background-color:beige ;
+      }
+
       .search-result{
-        width: calc(100% / 3);
-        float: left;
+        flex: 1 1 calc(33.333% - 20px);
+        margin: 10px;
         padding: 10px;
         box-sizing: border-box;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
       }
       .search-result img{
         max-width: 100%;
         height: auto;
         display: block;
-        margin: 0 auto;
+        margin: 10px 0;
+      }
+      .search-result strong{
+        display: block;
+        margin-bottom: 5px;
+      }
+      .results-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+      }
+      .loading{
+        text-align: center;
+        font-size: 18px;
+        color: #666;
       }
       
     </style>
 <script>navigator.serviceWorker.register("service-worker.js")</script> 
   
 </head>
-<body style="background-color: bisque;">
-  <div x-data="app">
+<body >
+  <div class="container" x-data="app">
     <h1>Search for books</h1>
-    <input type="text" x-model="query" placeholder="search" style="width: calc(100%-100px); float: left;" @keydown.enter="search()" >
-    <button @click="search()">Search</button>
-    <div x-html = "searchResults"></div>
+    <div class="search-box">
+      <input type="text" x-model="query" placeholder="search" style="width: calc(100%-100px); float: left;" @keydown.enter="search()" >
+      <button @click="search()">Search</button>
+    </div>
+    <div x-show="loading" class="loading">Loading...</div>
+    <div class="results-container" x-html = "searchResults"></div>
   </div>
   <script>
     const app = {

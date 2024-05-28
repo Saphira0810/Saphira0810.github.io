@@ -6,13 +6,31 @@
     <link rel="icon" type="image/png" href="img/opened-book-icon.png" purpose="any" >
     <title>Book Details</title>
     <style>
+      body{
+        background-color: bisque;
+        font-family: Arial, sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
       .container{
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         display: flex;
-        align-items: flex-start;
+        flex-wrap: wrap;
       }
       .cover{
         flex: 0 0 auto;
         margin-right: 20px;
+      }
+      .cover img{
+        max-width: 200px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
       .details{
         flex: 1 1 auto;
@@ -20,13 +38,31 @@
       .details > div{
         margin-bottom: 10px;
       }
-      .details img{
-        max-width: 100%;
-        height: auto;
+      .details strong{
+        display: block;
+        margin-bottom: 5px;
+        font-size: 18px;
+        color: white;
+      }
+      .button-container{
+        text-align: center;
+        margin-top: 20px;
+      }
+      .button-container button{
+        padding: 10px 20px;
+        font-size: 16px;
+        border: 1px solid white;
+        background-color: white;
+        color: black;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .button-container button:hover{
+        background-color: beige;
       }
     </style>
 </head>
-<body style="background-color: bisque;">
+<body>
   <div class="container" id="bookDetails">
     <div class="cover">
         <img id="coverImage" src="" alt="Book cover">
@@ -38,6 +74,10 @@
         <div id="bookUrl"></div>
     </div>
 </div>
+
+<div class="button-container">
+  <button onclick="window.history.back()" > Back to previous page </button>
+</div>
   <script>
     function fetchBookDetails() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -48,8 +88,8 @@
           .then(response => response.json())
           .then(data => {
             const { title, author_name,cover_i } = data;
-            const authorId = data.authors ? data.authors[0].author.key : "Unkonwn"; //getting the author's Id : works
-            const author= authorId ? `https://openlibrary.org${authorId}` : "Unknown"; //getting the author's json : works
+            const authorId = data.authors ? data.authors[0].author.key : "Unkonwn"; 
+            const author= authorId ? `https://openlibrary.org${authorId}` : "Unknown"; 
             const coverId = data.covers ? data.covers[0] : "Unknown";
             const coverUrl = coverId ? `https://covers.openlibrary.org/b/id/${coverId}-L.jpg` : "No cover available";
             const bookUrl = key ? `https://openlibrary.org${key}` : "#";
